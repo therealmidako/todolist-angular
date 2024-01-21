@@ -1,0 +1,22 @@
+<div class="container">
+  <app-todo-detail *ngIf="todoService.todoDetailShowModal" [todo]="selectedTodo"></app-todo-detail>
+  <app-update-todo *ngIf="todoService.updateTodoShowModal" [todo]="selectedTodo"></app-update-todo>
+  <app-todo-template-driven-form>
+    *ngIf="todoService.updateTodoAddShowModal"
+  </app-todo-template-driven-form>
+  <div class="todo" *ngFor="let todo of todoList">    
+      {{todo.title}}
+      <div>
+          <i><fa-icon [icon] = "faList"  class="on-icon"
+              (click)="this.todoService.todoDetailShowModal=true;selectTodo(todo)"></fa-icon></i>
+
+          <i><fa-icon [icon]= "faPenToSquare" (click)="this.todoService.updateTodoShowModal=true;selectTodo(todo)" class="on-icon"></fa-icon></i>
+          <i>
+              <fa-icon [icon] = "faTrash"  
+                  class="on-icon"
+                  (click)="deleteTodo(todo)">
+              </fa-icon>
+          </i>
+      </div>
+  </div>
+</div>
